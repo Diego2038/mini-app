@@ -9,16 +9,15 @@ class Estudiante(models.Model):
         return self.nombre
     
     @staticmethod
-    def crear_estudiante(nombre: str, apellido: str, edad: int, email: str):
-        estudiante = Estudiante(nombre=nombre, apellido=apellido, edad=edad, email=email)
+    def crear_estudiante(nombre: str, edad: int, correo_electronico: str):
+        estudiante = Estudiante(nombre=nombre, edad=edad, correo_electronico=correo_electronico)
         estudiante.save()
         return estudiante
     
-    def modificar_estudiante(self, nombre: str, apellido: str, edad: int, email: str):
+    def modificar_estudiante(self, nombre: str, edad: int, correo_electronico: str):
         self.nombre = nombre
-        self.apellido = apellido
         self.edad = edad
-        self.email = email
+        self.correo_electronico = correo_electronico
         self.save()
         
     def eliminar_estudiante(self):
