@@ -36,3 +36,6 @@ Para cerrar el ambiente virtual:
 deactivate
 ``` 
 
+# Consideraciones
+En Postgres hay que crear una base de datos llamada "prueba_chatgpt" para que haga la conexión entre Django y la base de datos en Postgres
+

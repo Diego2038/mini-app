@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+user_key = os.getenv('USER')
+user_password = os.getenv('PASSWORD')
+user_host = os.getenv('HOST')
+user_port = os.getenv('PORT') 
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,12 +88,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'prueba_chatgpt',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': user_key,
+        'PASSWORD': user_password,
+        'HOST': user_host,
+        'PORT': user_port,
     }
 }
+
+
 
 
 
