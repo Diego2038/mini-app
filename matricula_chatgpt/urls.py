@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('crear_estudiante/', views.crear_estudiante, name='crear_estudiante'),
     path('leer_estudiantes/', views.ver_todos_los_estudiantes , name='leer_estudiantes'),
+    path('leer_estudiantes/<int:id_estudiante>/', views.ver_un_estudiante, name='leer_estudiante'),
 
 ]

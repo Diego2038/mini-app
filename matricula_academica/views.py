@@ -38,5 +38,24 @@ def ver_todos_los_estudiantes(request):
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
+@csrf_exempt
+def ver_un_estudiante(request, id_estudiante):
+    if request.method == 'GET':
+        try:
+            estudiante = Estudiante.ver_un_estudiante(id_estudiante)
+            data = {
+                'id': estudiante.id,
+                'nombre': estudiante.nombre,
+                'edad': estudiante.edad,
+                'correo_electronico': estudiante.correo_electronico
+            }
+            return JsonResponse(data)
+        except Estudiante.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'El estudiante no existe'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
+
+
 
 
