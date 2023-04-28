@@ -16,10 +16,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-user_key = os.getenv('USER')
-user_password = os.getenv('PASSWORD')
-user_host = os.getenv('HOST')
-user_port = os.getenv('PORT') 
+variable_user = os.getenv('USER')
+variable_password = os.getenv('PASSWORD')
+variable_host = os.getenv('HOST')
+variable_port = os.getenv('PORT')
+variable_name_database = os.getenv('NAME_DATABASE')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,11 +88,11 @@ WSGI_APPLICATION = 'matricula_chatgpt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'prueba_chatgpt',
-        'USER': user_key,
-        'PASSWORD': user_password,
-        'HOST': user_host,
-        'PORT': user_port,
+        'NAME': variable_name_database,
+        'USER': variable_user,
+        'PASSWORD': variable_password,
+        'HOST': variable_host,
+        'PORT': variable_port,
     }
 }
 

@@ -22,12 +22,17 @@ Para ejecutar el ambiente virtual (desde la carpeta raiz):
 ```
 
 <br>
-Realizar las instalaciones de las dependencias:
+Realizar las instalaciones de las dependencias (procure haber ejecutado el ambiente virtual):
 
 ```
 pip install -r requirements.txt
 ```
+<br>
+Para ejecutar el servidor Django (en modo de desarrollo):
 
+```
+python manage.py runserver
+```
 
 <br>
 Para cerrar el ambiente virtual:
@@ -37,5 +42,6 @@ deactivate
 ``` 
 
 # Consideraciones
-En Postgres hay que crear una base de datos llamada "prueba_chatgpt" para que haga la conexión entre Django y la base de datos en Postgres
+Se debe de crear un archivo **.env** para establecer las variables de estados pertinentes, tal cual como está en el archivo **.env.example**, allí se definirán las especificaciones para la conexión con la base de datos a través de Postgres.<br><br>
+En Postgres hay que crear una base de datos con el mismo nombre cómo se definió en el archivo **.env** para la variable ***NAME_DATABASE*** para que haga la conexión entre Django y la base de datos en Postgres.
 
