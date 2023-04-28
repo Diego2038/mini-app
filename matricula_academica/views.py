@@ -56,6 +56,21 @@ def ver_un_estudiante(request, id_estudiante):
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
+@csrf_exempt
+def eliminar_estudiante(request, id_estudiante):
+    # print(request.method, id_estudiante)
+    # return JsonResponse({'status': 'jijii'}, status=200)
+    if request.method == 'DELETE':
+        try:
+            estudiante = Estudiante.objects.get(id=id_estudiante)
+            estudiante.delete()
+            return JsonResponse({'status': 'OK'})
+        except Estudiante.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'Estudiante no encontrado'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
+
 
 
 
