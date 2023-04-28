@@ -57,9 +57,7 @@ def ver_un_estudiante(request, id_estudiante):
 
 
 @csrf_exempt
-def eliminar_estudiante(request, id_estudiante):
-    # print(request.method, id_estudiante)
-    # return JsonResponse({'status': 'jijii'}, status=200)
+def eliminar_estudiante(request, id_estudiante): 
     if request.method == 'DELETE':
         try:
             estudiante = Estudiante.objects.get(id=id_estudiante)
@@ -67,6 +65,24 @@ def eliminar_estudiante(request, id_estudiante):
             return JsonResponse({'status': 'OK'})
         except Estudiante.DoesNotExist:
             return JsonResponse({'status': 'ERROR', 'message': 'Estudiante no encontrado'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
+
+@csrf_exempt
+def modificar_estudiante(request, id_estudiante):
+    if request.method == 'PUT':
+        try:
+            estudiante = Estudiante.objects.get(id=id_estudiante)
+            data = json.loads(request.body.decode('utf-8'))
+            nombre = data.get('nombre', None) 
+            edad = data.get('edad', None)
+            correo_electronico = data.get('correo_electronico', None)
+
+            estudiante.modificar_estudiante(nombre=nombre, edad=edad, correo_electronico=correo_electronico)
+            return JsonResponse({'status': 'OK', 'estudiante': {'id': estudiante.id, 'nombre': estudiante.nombre, 'edad': estudiante.edad, 'correo_electronico': estudiante.correo_electronico}})
+        except Estudiante.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'El estudiante no existe'}, status=404)
     else:
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
