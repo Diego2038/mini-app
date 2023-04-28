@@ -14,10 +14,13 @@ class Estudiante(models.Model):
         estudiante.save()
         return estudiante
     
-    def modificar_estudiante(self, nombre: str, edad: int, correo_electronico: str):
-        self.nombre = nombre
-        self.edad = edad
-        self.correo_electronico = correo_electronico
+    def modificar_estudiante(self, nombre: str = None, edad: int = None, correo_electronico: str = None):
+        if(nombre!=None):
+            self.nombre = nombre
+        if(edad!=None):
+            self.edad = edad
+        if(correo_electronico!=None):
+            self.correo_electronico = correo_electronico
         self.save()
         
     def eliminar_estudiante(self):

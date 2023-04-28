@@ -21,5 +21,22 @@ def crear_estudiante(request):
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
+@csrf_exempt
+def ver_todos_los_estudiantes(request):
+    if request.method == 'GET':
+        estudiantes = Estudiante.ver_todos_los_estudiantes()
+        data = {'estudiantes': []}
+        for estudiante in estudiantes:
+            data['estudiantes'].append({
+                'id': estudiante.id,
+                'nombre': estudiante.nombre,
+                'edad': estudiante.edad,
+                'correo_electronico': estudiante.correo_electronico
+            })
+        return JsonResponse(data)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
+
 
 

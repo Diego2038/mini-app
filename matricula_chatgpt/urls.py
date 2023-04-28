@@ -22,5 +22,6 @@ from matricula_academica import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('crear_estudiante/', views.crear_estudiante, name='crear_estudiante'),
-    
+    path('leer_estudiantes/', views.ver_todos_los_estudiantes , name='leer_estudiantes'),
+
 ]
