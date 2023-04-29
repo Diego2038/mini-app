@@ -99,6 +99,13 @@ class Matricula(models.Model):
         estudiantes = [m.estudiante for m in materia.matricula_set.all()]
         return estudiantes
     
+    @staticmethod
+    def leer_materias_matriculadas(id_estudiante):
+        matriculas = Matricula.objects.filter(estudiante=id_estudiante)
+        materias = [materia.materia for materia in matriculas]
+        return materias
+
+    
     def modificar_matricula(self,  estudiante, materia): 
         self.estudiante = estudiante
         self.materia = materia
@@ -107,5 +114,12 @@ class Matricula(models.Model):
     def eliminar_matricula(self, matricula_id):
         matricula = Matricula.objects.get(id=matricula_id)
         matricula.delete()
+    
+    @staticmethod
+    def ver_materias_matriculadas(estudiante_id):
+        matriculas = Matricula.objects.filter(estudiante=estudiante_id)
+        materias = [materia.materia for materia in matriculas]
+        return materias
+
     
     
