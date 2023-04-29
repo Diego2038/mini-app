@@ -92,8 +92,9 @@ class Matricula(models.Model):
         materia = Materia.objects.get(id=materia_id)
         matricula = Matricula(estudiante=estudiante, materia=materia)
         return matricula
-        
-    def leer_estudiantes_matriculados(self, materia_id):
+
+    @staticmethod    
+    def leer_estudiantes_matriculados(materia_id):
         materia = Materia.objects.get(id=materia_id)
         estudiantes = [m.estudiante for m in materia.matricula_set.all()]
         return estudiantes
