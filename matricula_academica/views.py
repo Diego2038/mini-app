@@ -221,3 +221,16 @@ def obtener_estudiantes_matriculados(request, materia_id):
             return JsonResponse({'status': 'ERROR', 'message': 'Materia no encontrada'}, status=404)
     else:
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+    
+
+@csrf_exempt
+def eliminar_matricula(request, matricula_id):
+    if request.method == 'DELETE':
+        try:
+            matricula = Matricula.objects.get(id=matricula_id)
+            matricula.eliminar_matricula(matricula_id)
+            return JsonResponse({'status': 'OK'})
+        except Matricula.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'Matricula no encontrada'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
