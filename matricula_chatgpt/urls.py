@@ -32,5 +32,7 @@ urlpatterns = [
     path('modificar_materia/<int:id_materia>/', views.actualizar_materia, name='modificar_materia'),
     path('eliminar_materia/<int:id_materia>/', views.eliminar_materia, name='eliminar_materia'),
     path('leer_materias/', views.ver_todas_las_materias, name='leer_materias'),
-    path('leer_materias/<int:id_materia>/', views.ver_materia, name='leer_materia')
+    path('leer_materias/<int:id_materia>/', views.ver_materia, name='leer_materia'),
+    # Matricula
+    path('crear_matricula/', views.registrar_matricula, name='crear_matricula'),
 ]

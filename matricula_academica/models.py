@@ -86,11 +86,12 @@ class Matricula(models.Model):
     def __str__(self):
         return f"{self.estudiante.nombre} matriculado en {self.materia.nombre}"
     
-    def registrar_matricula(self, estudiante_id, materia_id):
+    @staticmethod
+    def registrar_matricula(estudiante_id, materia_id):
         estudiante = Estudiante.objects.get(id=estudiante_id)
         materia = Materia.objects.get(id=materia_id)
         matricula = Matricula(estudiante=estudiante, materia=materia)
-        matricula.save()
+        return matricula
         
     def leer_estudiantes_matriculados(self, materia_id):
         materia = Materia.objects.get(id=materia_id)

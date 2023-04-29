@@ -190,3 +190,21 @@ def ver_materia(request, id_materia):
             return JsonResponse({'status': 'ERROR', 'message': 'Materia no encontrada'}, status=404)
     else:
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
+# Matricula
+@csrf_exempt
+def registrar_matricula(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            estudiante_id = data.get('estudiante_id')
+            materia_id = data.get('materia_id')
+            matricula = Matricula.registrar_matricula(estudiante_id, materia_id)
+            matricula.save()
+            return JsonResponse({'status': 'OK'})
+        except Estudiante.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'Estudiante no encontrado'}, status=404)
+        except Materia.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'Materia no encontrada'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
