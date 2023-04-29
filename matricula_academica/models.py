@@ -53,11 +53,16 @@ class Materia(models.Model):
         return materia
     
     def modificar_materia(self, nombre: str, profesor: str, dia_semana: str, hora_inicio: str, hora_fin: str):
-        self.nombre = nombre
-        self.profesor = profesor
-        self.dia_semana = dia_semana
-        self.hora_inicio = hora_inicio
-        self.hora_fin = hora_fin
+        if nombre != None:
+            self.nombre = nombre
+        if profesor != None:
+            self.profesor = profesor
+        if dia_semana != None:
+            self.dia_semana = dia_semana
+        if hora_inicio != None:
+            self.hora_inicio = hora_inicio
+        if hora_fin != None:
+            self.hora_fin = hora_fin 
         self.save()
     
     def eliminar_materia(self):

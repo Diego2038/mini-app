@@ -29,4 +29,6 @@ urlpatterns = [
     path('modificar_estudiante/<int:id_estudiante>/', views.modificar_estudiante, name='modificar_estudiante'),
     # Materias
     path('crear_materia/', views.crear_materia, name='crear_materia'),
+    path('modificar_materia/<int:id_materia>/', views.actualizar_materia, name='modificar_materia'),
+
 ]

@@ -112,5 +112,42 @@ def crear_materia(request):
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
+@csrf_exempt
+def actualizar_materia(request, id_materia):
+    try:
+        materia = Materia.objects.get(id=id_materia)
+    except Materia.DoesNotExist:
+        return JsonResponse({'status': 'ERROR', 'message': 'La materia no existe'}, status=404)
+
+    if request.method == 'PUT':  
+        #nombre = data.get('nombre') 
+        data = json.loads(request.body.decode('utf-8'))
+        nombre = data.get('nombre',None)
+        profesor = data.get('profesor',None)
+        dia_semana = data.get('dia_semana',None)
+        hora_inicio = data.get('hora_inicio',None)
+        hora_fin = data.get('hora_fin',None)
+
+        materia.modificar_materia(
+            nombre = nombre,
+            profesor = profesor,
+            dia_semana = dia_semana,
+            hora_inicio = hora_inicio,
+            hora_fin = hora_fin   
+        )
+
+        materia.save()
+        return JsonResponse({
+            'status': 'OK',
+            'materia': {
+                'nombre': materia.nombre,
+                'profesor': materia.profesor,
+                'dia_semana': materia.dia_semana,
+                'hora_inicio': materia.hora_inicio,
+                'hora_fin': materia.hora_fin
+            }
+        })
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
