@@ -163,3 +163,12 @@ def eliminar_materia(request, id_materia):
     else:
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
+
+@csrf_exempt
+def ver_todas_las_materias(request):
+    if request.method == 'GET':
+        materias = Materia.ver_todas_las_materias()
+        data = {'materias': list(materias.values('id', 'nombre', 'profesor', 'dia_semana', 'hora_inicio', 'hora_fin'))}
+        return JsonResponse(data, safe=False)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
