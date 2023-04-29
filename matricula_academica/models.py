@@ -47,16 +47,15 @@ class Materia(models.Model):
         return self.nombre
     
     @staticmethod
-    def crear_materia(nombre: str, codigo: str, profesor: str, dia: str, hora_inicio: str, hora_fin: str):
-        materia = Materia(nombre=nombre, codigo=codigo, profesor=profesor, dia=dia, hora_inicio=hora_inicio, hora_fin=hora_fin)
+    def crear_materia(nombre: str, profesor: str, dia_semana: str, hora_inicio: str, hora_fin: str):
+        materia = Materia(nombre=nombre, profesor=profesor, dia_semana=dia_semana, hora_inicio=hora_inicio, hora_fin=hora_fin)
         materia.save()
         return materia
     
-    def modificar_materia(self, nombre: str, codigo: str, profesor: str, dia: str, hora_inicio: str, hora_fin: str):
+    def modificar_materia(self, nombre: str, profesor: str, dia_semana: str, hora_inicio: str, hora_fin: str):
         self.nombre = nombre
-        self.codigo = codigo
         self.profesor = profesor
-        self.dia = dia
+        self.dia_semana = dia_semana
         self.hora_inicio = hora_inicio
         self.hora_fin = hora_fin
         self.save()

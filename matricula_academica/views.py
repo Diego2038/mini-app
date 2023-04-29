@@ -4,9 +4,11 @@ from django.shortcuts import render
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Estudiante
+from .models import Estudiante, Materia, Matricula
 
 import json
+
+#Estudiantes
 
 @csrf_exempt
 def crear_estudiante(request):
@@ -86,6 +88,28 @@ def modificar_estudiante(request, id_estudiante):
     else:
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
+
+# Materias
+
+@csrf_exempt
+def crear_materia(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8')) 
+        nombre = data.get('nombre') 
+        profesor = data.get('profesor')
+        dia_semana = data.get('dia_semana')
+        hora_inicio = data.get('hora_inicio')
+        hora_fin = data.get('hora_fin')
+        materia = Materia.crear_materia(nombre, profesor, dia_semana, hora_inicio, hora_fin)
+        return JsonResponse({'status': 'OK', 'materia': {
+            'nombre': materia.nombre,
+            'profesor': materia.profesor,
+            'dia_semana': materia.dia_semana,
+            'hora_inicio': materia.hora_inicio,
+            'hora_fin': materia.hora_fin
+        }})
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
 
