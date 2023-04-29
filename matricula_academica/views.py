@@ -172,3 +172,21 @@ def ver_todas_las_materias(request):
         return JsonResponse(data, safe=False)
     else:
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
+
+@csrf_exempt
+def ver_materia(request, id_materia):
+    if request.method == 'GET':
+        try:
+            materia = Materia.ver_una_materia(id_materia)
+            return JsonResponse({
+                'nombre': materia.nombre,
+                'profesor': materia.profesor,
+                'dia_semana': materia.dia_semana,
+                'hora_inicio': str(materia.hora_inicio),
+                'hora_fin': str(materia.hora_fin)
+            })
+        except Materia.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'Materia no encontrada'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
