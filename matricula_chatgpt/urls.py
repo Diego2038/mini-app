@@ -37,4 +37,5 @@ urlpatterns = [
     path('crear_matricula/', views.registrar_matricula, name='crear_matricula'),
     path('ver_estudiantes_en_materia/<int:materia_id>/', views.obtener_estudiantes_matriculados, name='ver_estudiantes_en_materia'),
     path('eliminar_matricula/<int:matricula_id>/', views.eliminar_matricula, name='eliminar_matricula'),
+    path('modificar_matricula/<int:matricula_id>/', views.modificar_matricula, name='modificar_matricula'),
 ]

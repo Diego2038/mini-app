@@ -99,13 +99,10 @@ class Matricula(models.Model):
         estudiantes = [m.estudiante for m in materia.matricula_set.all()]
         return estudiantes
     
-    def modificar_matricula(self, matricula_id, estudiante_id, materia_id):
-        matricula = Matricula.objects.get(id=matricula_id)
-        estudiante = Estudiante.objects.get(id=estudiante_id)
-        materia = Materia.objects.get(id=materia_id)
-        matricula.estudiante = estudiante
-        matricula.materia = materia
-        matricula.save()
+    def modificar_matricula(self,  estudiante, materia): 
+        self.estudiante = estudiante
+        self.materia = materia
+        self.save()
     
     def eliminar_matricula(self, matricula_id):
         matricula = Matricula.objects.get(id=matricula_id)
