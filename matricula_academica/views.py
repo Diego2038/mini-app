@@ -151,3 +151,15 @@ def actualizar_materia(request, id_materia):
         return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
 
 
+@csrf_exempt
+def eliminar_materia(request, id_materia): 
+    if request.method == 'DELETE':
+        try:
+            materia = Materia.objects.get(id=id_materia)
+            materia.eliminar_materia()
+            return JsonResponse({'status': 'OK'})
+        except Estudiante.DoesNotExist:
+            return JsonResponse({'status': 'ERROR', 'message': 'Materia no encontrada'}, status=404)
+    else:
+        return JsonResponse({'status': 'ERROR', 'message': 'Método HTTP no permitido'}, status=405)
+
