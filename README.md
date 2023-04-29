@@ -28,6 +28,13 @@ Realizar las instalaciones de las dependencias (procure haber ejecutado el ambie
 pip install -r requirements.txt
 ```
 <br>
+Para realizar las migraciones a la base de datos de postgres:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+<br>
 Para ejecutar el servidor Django (en modo de desarrollo):
 
 ```
