@@ -46,19 +46,18 @@ export const App = () => {
 	return (
 		<div>
 			<h1>Gestión de estudiantes</h1>
-			{ estudianteActual ? (
-				<EstudianteForm
-					onSubmit={ estudianteActual.id ? handleUpdate : handleCreate }
-					onCancel={ () => setEstudianteActual(null) }
-					estudiante={ estudianteActual }
-				/>
-			) : (
+			<div style={ { display: 'flex', gap: 6 } }>
 				<EstudianteList
 					estudiantes={ estudiantes }
 					onDelete={ handleDelete }
 					onEdit={ (estudiante) => setEstudianteActual(estudiante) }
 				/>
-			) }
+				<EstudianteForm
+					onSubmit={ estudianteActual ? handleUpdate : handleCreate }
+					onCancel={ () => setEstudianteActual(null) }
+					estudiante={ estudianteActual ?? { id: '', nombre: '', edad: 0, correo_electronico: '' } }
+				/>
+			</div>
 		</div>
 	);
 };
