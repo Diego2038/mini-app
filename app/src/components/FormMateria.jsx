@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function FormMateria(props) {
 	const [nombre, setNombre] = useState(props.materia ? props.materia.nombre : '');
 	const [profesor, setProfesor] = useState(props.materia ? props.materia.profesor : '');
-	const [diaSemana, setDiaSemana] = useState(props.materia ? props.materia.diaSemana : '');
-	const [horaInicio, setHoraInicio] = useState(props.materia ? props.materia.horaInicio : '');
-	const [horaFin, setHoraFin] = useState(props.materia ? props.materia.horaFin : '');
+	const [diaSemana, setDiaSemana] = useState(props.materia ? props.materia.dia_semana : '');
+	const [horaInicio, setHoraInicio] = useState(props.materia ? props.materia.hora_inicio : '');
+	const [horaFin, setHoraFin] = useState(props.materia ? props.materia.hora_fin : '');
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const materia = { nombre, profesor, diaSemana, horaInicio, horaFin };
+		let materia;
+		if (props.materia) {
+			materia = { id: props.materia.id, nombre, profesor, dia_semana: diaSemana, hora_inicio: horaInicio, hora_fin: horaFin };
+		} else {
+			materia = { nombre, profesor, dia_semana: diaSemana, hora_inicio: horaInicio, hora_fin: horaFin };
+		}
 		props.onSubmit(materia);
 	};
+
+	useEffect(() => {
+		if (!props.materia) return;
+		setNombre(props.materia.nombre);
+		setProfesor(props.materia.profesor);
+		setDiaSemana(props.materia.dia_semana);
+		setHoraInicio(props.materia.hora_inicio);
+		setHoraFin(props.materia.hora_fin);
+	}, [props.materia]);
 
 	return (
 		<form onSubmit={ handleSubmit }>
