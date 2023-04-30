@@ -25,12 +25,11 @@ export const App = () => {
 	};
 
 	const handleUpdate = (estudiante) => {
-		console.log(estudiante);
 		axios
 			.put(`${BASE_URL}/modificar_estudiante/${estudiante.id}/`, estudiante)
-			.then((response) => {
+			.then(() => {
 				const updatedEstudiantes = estudiantes.map((e) =>
-					e.id === response.data.id ? response.data : e
+					e.id === estudiante.id ? estudiante : e
 				);
 				setEstudiantes(updatedEstudiantes);
 				setEstudianteActual(null);
@@ -60,14 +59,6 @@ export const App = () => {
 					onEdit={ (estudiante) => setEstudianteActual(estudiante) }
 				/>
 			) }
-			{ estudiantes.map((estudiante) => (
-				<Estudiante
-					key={ estudiante.id }
-					estudiante={ estudiante }
-					onEdit={ () => setEstudianteActual(estudiante) }
-					onDelete={ handleDelete }
-				/>
-			)) }
 		</div>
 	);
 };

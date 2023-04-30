@@ -1,6 +1,6 @@
 import React from "react";
 
-export const EstudianteList = ({ estudiantes, onDelete }) => {
+export const EstudianteList = ({ estudiantes, onEdit, onDelete }) => {
 	return (
 		<div>
 			<h2>Lista de estudiantes</h2>
@@ -22,6 +22,7 @@ export const EstudianteList = ({ estudiantes, onDelete }) => {
 							<td>{ estudiante.edad }</td>
 							<td>{ estudiante.correo_electronico }</td>
 							<td>
+								<button onClick={ () => onEdit(estudiante) }>Editar</button>
 								<button onClick={ () => onDelete(estudiante) }>Eliminar</button>
 							</td>
 						</tr>

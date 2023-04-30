@@ -9,7 +9,7 @@ export const EstudianteForm = ({ onSubmit, onCancel, estudiante }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		onSubmit({ nombre, edad, correo_electronico: correoElectronico });
+		onSubmit({ id: estudiante.id, nombre, edad, correo_electronico: correoElectronico });
 	};
 
 	return (
