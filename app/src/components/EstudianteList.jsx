@@ -16,7 +16,7 @@ export const EstudianteList = ({ estudiantes, onEdit, onDelete }) => {
 				</thead>
 				<tbody>
 					{ estudiantes.map((estudiante) => (
-						<tr key={ estudiante.id }>
+						<tr key={ estudiante.correo_electronico }>
 							<td>{ estudiante.id }</td>
 							<td>{ estudiante.nombre }</td>
 							<td>{ estudiante.edad }</td>

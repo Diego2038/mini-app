@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import React, { useEffect, useState } from "react";
 import { EstudianteForm } from "./components/EstudianteForm";
 import { EstudianteList } from "./components/EstudianteList";
-import { Estudiante } from "./components/Estudiante";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -10,11 +9,15 @@ export const App = () => {
 	const [estudiantes, setEstudiantes] = useState([]);
 	const [estudianteActual, setEstudianteActual] = useState(null);
 
+	const [materias, setMaterias] = useState([]);
+
 	useEffect(() => {
 		axios.get(`${BASE_URL}/leer_estudiantes/`).then((response) => {
 			console.log(response.data.estudiantes);
 			setEstudiantes(response.data.estudiantes);
 		});
+
+		obtenerMaterias();
 	}, []);
 
 	const handleCreate = (estudiante) => {
@@ -41,6 +44,42 @@ export const App = () => {
 			const updatedEstudiantes = estudiantes.filter((e) => e.id !== estudiante.id);
 			setEstudiantes(updatedEstudiantes);
 		});
+	};
+
+	const obtenerMaterias = async () => {
+		try {
+			const respuesta = await axios.get('http://localhost:8000/materias/');
+			setMaterias(respuesta.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const crearMateria = async (materia) => {
+		try {
+			const respuesta = await axios.post('http://localhost:8000/materias/', materia);
+			setMaterias([...materias, respuesta.data]);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const actualizarMateria = async (materia) => {
+		try {
+			const respuesta = await axios.put(`http://localhost:8000/materias/${materia.id}/`, materia);
+			setMaterias(materias.map((m) => (m.id === materia.id ? respuesta.data : m)));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const eliminarMateria = async (materia) => {
+		try {
+			await axios.delete(`http://localhost:8000/materias/${materia.id}/`);
+			setMaterias(materias.filter((m) => m.id !== materia.id));
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (
