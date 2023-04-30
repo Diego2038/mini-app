@@ -19,12 +19,21 @@ function FormMateria(props) {
 	};
 
 	useEffect(() => {
-		if (!props.materia) return;
-		setNombre(props.materia.nombre);
-		setProfesor(props.materia.profesor);
-		setDiaSemana(props.materia.dia_semana);
-		setHoraInicio(props.materia.hora_inicio);
-		setHoraFin(props.materia.hora_fin);
+		if (props.materia) {
+			setNombre(props.materia.nombre);
+			setProfesor(props.materia.profesor);
+			setDiaSemana(props.materia.dia_semana);
+			setHoraInicio(props.materia.hora_inicio);
+			setHoraFin(props.materia.hora_fin);
+		}
+		else {
+			setNombre('');
+			setProfesor('');
+			setDiaSemana('');
+			setHoraInicio('');
+			setHoraFin('');
+
+		}
 	}, [props.materia]);
 
 	return (
@@ -50,6 +59,9 @@ function FormMateria(props) {
 				<input type="time" id="horaFin" value={ horaFin } onChange={ (event) => setHoraFin(event.target.value) } />
 			</div>
 			<button type="submit">{ props.materia ? 'Actualizar' : 'Agregar' }</button>
+			<button type="button" onClick={ props.onCancel }>
+				Cancelar
+			</button>
 		</form>
 	);
 }

@@ -61,6 +61,7 @@ export const App = () => {
 		try {
 			const respuesta = await axios.post(`${BASE_URL}/crear_materia/`, materia);
 			setMaterias([...materias, materia]);
+			setMateriaActual(null);
 		} catch (error) {
 			console.error(error);
 		}
