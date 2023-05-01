@@ -7,6 +7,7 @@ function TablaMaterias(props) {
 		<table>
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nombre</th>
 					<th>Profesor</th>
 					<th>Día de la semana</th>
@@ -18,6 +19,7 @@ function TablaMaterias(props) {
 			<tbody>
 				{ materias.map((materia) => (
 					<tr key={ materia.id }>
+						<td>{ materia.id }</td>
 						<td>{ materia.nombre }</td>
 						<td>{ materia.profesor }</td>
 						<td>{ materia.dia_semana }</td>

@@ -4,6 +4,7 @@ import { EstudianteForm } from "./components/EstudianteForm";
 import { EstudianteList } from "./components/EstudianteList";
 import TablaMaterias from './components/TablaMaterias';
 import FormMateria from './components/FormMateria';
+import MatriculasForm from './components/MatriculasForm';
 
 const BASE_URL = "http://localhost:8000";
 
@@ -111,6 +112,10 @@ export const App = () => {
 					onCancel={ () => setMateriaActual(null) }
 					materia={ materiaActual }
 				/>
+			</div>
+			<div style={ { display: 'flex', gap: 6 } }>
+				<div></div>
+				<MatriculasForm />
 			</div>
 		</div>
 	);
