@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function TablaMaterias(props) {
 	const { materias, onEditar, onEliminar } = props;
@@ -9,8 +10,8 @@ function TablaMaterias(props) {
 	const verEstudiantes = async (id) => {
 		setMateriaId(id);
 		try {
-			const response = await axios.get(`/api/materias/${id}/estudiantes`);
-			setEstudiantes(response.data);
+			const response = await axios.get(`http://localhost:8000/ver_estudiantes_en_materia/${id}/`);
+			setEstudiantes(response.data.estudiantes);
 			setShowEstudiantes(true);
 		} catch (error) {
 			console.log(error);
@@ -46,7 +47,7 @@ function TablaMaterias(props) {
 							<td>{ materia.hora_inicio }</td>
 							<td>{ materia.hora_fin }</td>
 							<td>
-								<button onClick={ () => onVerMatriculas(materia.id) }>Ver Estudiantes</button>
+								<button onClick={ () => verEstudiantes(materia.id) }>Ver Estudiantes</button>
 								<button onClick={ () => onEditar(materia) }>Editar</button>
 								<button onClick={ () => onEliminar(materia.id) }>Eliminar</button>
 							</td>
@@ -57,11 +58,9 @@ function TablaMaterias(props) {
 			{ showEstudiantes && (
 				<div>
 					<h2>Estudiantes matriculados en la materia { materiaId }</h2>
-					<button onClick={ cerrarModal }>Cerrar</button>
 					<table>
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Nombre</th>
 								<th>Edad</th>
 								<th>Correo Electrónico</th>
@@ -69,8 +68,7 @@ function TablaMaterias(props) {
 						</thead>
 						<tbody>
 							{ estudiantes.map((estudiante) => (
-								<tr key={ estudiante.id }>
-									<td>{ estudiante.id }</td>
+								<tr key={ estudiante.correo_electronico }>
 									<td>{ estudiante.nombre }</td>
 									<td>{ estudiante.edad }</td>
 									<td>{ estudiante.correo_electronico }</td>
@@ -78,6 +76,7 @@ function TablaMaterias(props) {
 							)) }
 						</tbody>
 					</table>
+					<button onClick={ cerrarModal }>Cerrar</button>
 				</div>
 			) }
 		</div>
