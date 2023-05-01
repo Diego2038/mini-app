@@ -44,7 +44,7 @@ export const EstudianteList = ({ estudiantes, onEdit, onDelete }) => {
 								<td>{ estudiante.correo_electronico }</td>
 								<td>
 
-									<button onClick={ () => handleViewMatriculas(estudiante) }>Ver matrículas</button>
+									<button onClick={ () => handleViewMatriculas(estudiante) }>Ver Materias</button>
 									<button onClick={ () => onEdit(estudiante) }>Editar</button>
 									<button onClick={ () => onDelete(estudiante) }>Eliminar</button>
 								</td>
