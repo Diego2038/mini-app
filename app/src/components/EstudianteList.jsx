@@ -55,7 +55,7 @@ export const EstudianteList = ({ estudiantes, onEdit, onDelete }) => {
 				{ showMatriculas && (
 					<div>
 						<h2>Matrículas de { selectedEstudiante.nombre }</h2>
-						<table>
+						{ matriculas.length ? <table>
 							<thead>
 								<tr>
 									<th>Materia</th>
@@ -68,7 +68,7 @@ export const EstudianteList = ({ estudiantes, onEdit, onDelete }) => {
 									</tr>
 								)) }
 							</tbody>
-						</table>
+						</table> : <span>No esta matriculado en ninguna materia</span> }
 						<button onClick={ handleHideMatriculas }>Cerrar</button>
 					</div>
 				) }

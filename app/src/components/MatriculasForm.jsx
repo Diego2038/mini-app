@@ -32,17 +32,20 @@ function MatriculasForm() {
 	};
 
 	return (
-		<form onSubmit={ handleSubmit }>
-			<label>
-				Estudiante ID:
-				<input type="text" value={ estudianteId } onChange={ handleEstudianteIdChange } />
-			</label>
-			<label>
-				Materia ID:
-				<input type="text" value={ materiaId } onChange={ handleMateriaIdChange } />
-			</label>
-			<button type="submit">Crear Matrícula</button>
-		</form>
+		<div>
+			<h2>Crear matricula</h2>
+			<form style={ { display: 'flex', flexDirection: 'column', alignItems: 'start' } } onSubmit={ handleSubmit }>
+				<label>
+					Estudiante ID:
+					<input type="text" value={ estudianteId } onChange={ handleEstudianteIdChange } />
+				</label>
+				<label>
+					Materia ID:
+					<input type="text" value={ materiaId } onChange={ handleMateriaIdChange } />
+				</label>
+				<button type="submit">Crear Matrícula</button>
+			</form>
+		</div>
 	);
 }
 

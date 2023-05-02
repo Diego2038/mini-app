@@ -37,32 +37,35 @@ function FormMateria(props) {
 	}, [props.materia]);
 
 	return (
-		<form onSubmit={ handleSubmit }>
-			<div>
-				<label htmlFor="nombre">Nombre:</label>
-				<input type="text" id="nombre" value={ nombre } onChange={ (event) => setNombre(event.target.value) } />
-			</div>
-			<div>
-				<label htmlFor="profesor">Profesor:</label>
-				<input type="text" id="profesor" value={ profesor } onChange={ (event) => setProfesor(event.target.value) } />
-			</div>
-			<div>
-				<label htmlFor="diaSemana">Día de la semana:</label>
-				<input type="text" id="diaSemana" value={ diaSemana } onChange={ (event) => setDiaSemana(event.target.value) } />
-			</div>
-			<div>
-				<label htmlFor="horaInicio">Hora de inicio:</label>
-				<input type="time" id="horaInicio" value={ horaInicio } onChange={ (event) => setHoraInicio(event.target.value) } />
-			</div>
-			<div>
-				<label htmlFor="horaFin">Hora de fin:</label>
-				<input type="time" id="horaFin" value={ horaFin } onChange={ (event) => setHoraFin(event.target.value) } />
-			</div>
-			<button type="submit">{ props.materia ? 'Actualizar' : 'Agregar' }</button>
-			<button type="button" onClick={ props.onCancel }>
-				Cancelar
-			</button>
-		</form>
+		<div>
+			<h2>{ props.materia ? "Editar materia" : "Crear materia" }</h2>
+			<form onSubmit={ handleSubmit }>
+				<div>
+					<label htmlFor="nombre">Nombre:</label>
+					<input type="text" id="nombre" value={ nombre } onChange={ (event) => setNombre(event.target.value) } />
+				</div>
+				<div>
+					<label htmlFor="profesor">Profesor:</label>
+					<input type="text" id="profesor" value={ profesor } onChange={ (event) => setProfesor(event.target.value) } />
+				</div>
+				<div>
+					<label htmlFor="diaSemana">Día de la semana:</label>
+					<input type="text" id="diaSemana" value={ diaSemana } onChange={ (event) => setDiaSemana(event.target.value) } />
+				</div>
+				<div>
+					<label htmlFor="horaInicio">Hora de inicio:</label>
+					<input type="time" id="horaInicio" value={ horaInicio } onChange={ (event) => setHoraInicio(event.target.value) } />
+				</div>
+				<div>
+					<label htmlFor="horaFin">Hora de fin:</label>
+					<input type="time" id="horaFin" value={ horaFin } onChange={ (event) => setHoraFin(event.target.value) } />
+				</div>
+				<button type="submit">{ props.materia ? 'Actualizar' : 'Agregar' }</button>
+				<button type="button" onClick={ props.onCancel }>
+					Cancelar
+				</button>
+			</form>
+		</div>
 	);
 }
 

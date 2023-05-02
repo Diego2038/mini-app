@@ -90,33 +90,30 @@ export const App = () => {
 		<div style={ { display: "flex", flexDirection: 'column', gap: 12 } }>
 			<h1>Gestión de estudiantes</h1>
 			<div style={ { display: 'flex', gap: 6 } }>
-				<EstudianteList
-					estudiantes={ estudiantes }
-					onDelete={ handleDelete }
-					onEdit={ (estudiante) => setEstudianteActual(estudiante) }
-				/>
 				<EstudianteForm
 					onSubmit={ estudianteActual ? handleUpdate : handleCreate }
 					onCancel={ () => setEstudianteActual(null) }
 					estudiante={ estudianteActual ?? { id: '', nombre: '', edad: 0, correo_electronico: '' } }
 				/>
+				<EstudianteList
+					estudiantes={ estudiantes }
+					onDelete={ handleDelete }
+					onEdit={ (estudiante) => setEstudianteActual(estudiante) }
+				/>
 			</div>
 			<div style={ { display: 'flex', gap: 6 } }>
-				<TablaMaterias
-					materias={ materias }
-					onEliminar={ eliminarMateria }
-					onEditar={ (materia) => setMateriaActual(materia) }
-				/>
 				<FormMateria
 					onSubmit={ materiaActual ? actualizarMateria : crearMateria }
 					onCancel={ () => setMateriaActual(null) }
 					materia={ materiaActual }
 				/>
+				<TablaMaterias
+					materias={ materias }
+					onEliminar={ eliminarMateria }
+					onEditar={ (materia) => setMateriaActual(materia) }
+				/>
 			</div>
-			<div style={ { display: 'flex', gap: 6 } }>
-				<div></div>
-				<MatriculasForm />
-			</div>
+			<MatriculasForm />
 		</div>
 	);
 };
